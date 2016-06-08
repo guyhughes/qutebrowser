@@ -19,6 +19,8 @@
 
 """Tests for qutebrowser.misc.lineparser."""
 
+import pprint
+
 import pytest
 
 from qutebrowser.misc import lineparser as lineparsermod
@@ -149,4 +151,9 @@ class TestAppendLineParser:
         lineparser.save()
         data = '\n'.join(self.BASE_DATA + new_data)
         data = [e + '\n' for e in data[-(size - 1):].splitlines()]
-        assert lineparser.get_recent(size) == data
+        recent = lineparser.get_recent(size)
+        print("=== recent ===")
+        pprint.pprint(recent)
+        print("=== data ===")
+        pprint.pprint(data)
+        assert recent == data
